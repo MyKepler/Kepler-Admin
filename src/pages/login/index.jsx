@@ -1,33 +1,50 @@
-import { Form, Input, Button, Checkbox } from "antd";
+
+// 类组件
 import React from "react";
+import { Form, Input, Button, Checkbox, message } from "antd";
 import "./index.less";
 
 class App extends React.Component {
+  // 创建ref
+  formRef = React.createRef();
+
+  // 构造器 可不写
   // constructor(props) {
   //   super(props);
   //   console.log("constructor", this.props);
   // }
-  onFinish = (values) => {
-    console.log("Success:", values);
-  };
-
-  onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
 
   onSubmit = () => {
-    // this.props.history.push("/admin");
-    this.props.history.push({
-      pathname: "/admin",
-      state: {
-        id: 3,
-      },
-    });
+    console.log(this.formRef.current, "this.formRef.current======");
+    this.formRef.current
+      .validateFields()
+      .then((val) => {
+        if (val.username === "xuxinyi" && val.password === "123456") {
+          this.props.history.push({
+            pathname: "/home",
+            state: {
+              id: 3,
+            },
+          });
+        } else {
+          message.error("Account Error");
+        }
+      })
+      .catch((errorInfo) => {
+        console.log(errorInfo, "errorInfo=====");
+      });
   };
 
-  onReset = () => {};
+  onReset = () => {
+    this.formRef.current.resetFields();
+  };
 
-  onFill = () => {};
+  onFill = () => {
+    this.formRef.current.setFieldsValue({
+      username: "xuxinyi",
+      password: "123456",
+    });
+  };
 
   render() {
     return (
@@ -37,8 +54,7 @@ class App extends React.Component {
           initialValues={{
             remember: true,
           }}
-          onFinish={this.onFinish}
-          onFinishFailed={this.onFinishFailed}
+          ref={this.formRef}
         >
           <Form.Item
             label="Username"

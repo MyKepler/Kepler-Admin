@@ -5,14 +5,15 @@ import './App.css';
 import 'antd/dist/antd.less'; 
 import Login from './pages/login';
 import Admin from './pages/admin';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch,Redirect } from 'react-router-dom';
 
 function App() {
   return (
   <HashRouter>
       <Switch>
+        <Redirect exact={true} from="/" to="/login"></Redirect>
         <Route path="/login" component={Login}/>
-        <Route path="/admin" component={Admin}/>
+        <Route path="/" component={Admin}/>
       </Switch>
     </HashRouter>
   );
