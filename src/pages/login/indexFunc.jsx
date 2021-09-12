@@ -1,4 +1,3 @@
-
 // 函数组件
 import { Form, Input, Button, Checkbox } from "antd";
 import React from "react";
@@ -15,12 +14,12 @@ function App() {
       .validateFields()
       .then((values) => {
         console.log(values, "val=====");
-        // this.props.history.push({
-        //   pathname: "/admin",
-        //   state: {
-        //     id: 3,
-        //   },
-        // });
+        this.props.history.push({
+          pathname: "/admin",
+          state: {
+            id: "xuxy",
+          },
+        });
       })
       .catch((errorInfo) => {
         console.log(errorInfo, "errorInfo=====");

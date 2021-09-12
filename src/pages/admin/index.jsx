@@ -23,10 +23,21 @@ class App extends React.Component {
   state = {
     selectedKeyList: ["Home"],
   };
+
   handelSelect = (item) => {
     console.log(item, "item, key, keyPath, selectedKeys, domEvent=====");
     this.setState({ selectedKeyList: item.keyPath.reverse() });
   };
+
+  loginOut = () => {
+    this.props.history.push({
+      pathname: "/login",
+      // state: {
+      // 	id: 3,
+      // },
+    });
+  };
+
   render() {
     return (
       <div>
@@ -35,7 +46,10 @@ class App extends React.Component {
             <span>Kepler学习系统</span>
             <div>
               <img className="avatar-logo" src={avatar} alt="" />
-              <PoweroffOutlined className="login-out-logo" />
+              <PoweroffOutlined
+                className="login-out-logo"
+                onClick={this.loginOut}
+              />
             </div>
 
             {/* <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
