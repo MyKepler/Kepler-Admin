@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import store from './redux/store'
+import {Provider} from 'react-redux'
 
 ReactDOM.render(
-  <React.StrictMode>
+/* 此处需要用Provider包裹App，目的是让App所有的后代容器组件都能接收到store */
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 

@@ -13,6 +13,7 @@ import avatar from "../../image/logo512.png";
 import { Link, Route, Switch, Redirect } from "react-router-dom";
 import Home from "./home/index";
 import Todo from "./todo/index";
+import store from '../../redux/store'
 
 class App extends React.Component {
   componentDidMount(props) {
@@ -39,6 +40,7 @@ class App extends React.Component {
   };
 
   render() {
+    console.log(store.getState().user.username,'store.getState()');
     return (
       <div>
         <Layout>

@@ -1,8 +1,9 @@
-
 // 类组件
 import React from "react";
 import { Form, Input, Button, Checkbox, message } from "antd";
 import "./index.less";
+import { connect } from "react-redux";
+import { editUser } from "../../redux/actions/user";
 
 class App extends React.Component {
   // 创建ref
@@ -20,6 +21,9 @@ class App extends React.Component {
       .validateFields()
       .then((val) => {
         if (val.username === "xuxinyi" && val.password === "123456") {
+          // 存入store
+          this.props.editUser({ username: val.username, password: val.password });
+
           this.props.history.push({
             pathname: "/home",
             state: {
@@ -47,8 +51,11 @@ class App extends React.Component {
   };
 
   render() {
+    console.log(this.props.user, "this.props.user");
     return (
       <div className="login-main">
+        {/* username: <p>{this.props.user.username}</p>
+        password: <p>{this.props.user.password}</p> */}
         <Form
           name="basic"
           initialValues={{
@@ -100,4 +107,10 @@ class App extends React.Component {
   }
 }
 
-export default App;
+// export default App;
+export default connect(
+  (state) => ({
+    user: state.user,
+  }), //映射状态
+  { editUser } //映射操作状态的方法
+)(App);
