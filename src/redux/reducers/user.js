@@ -1,6 +1,6 @@
 import { EDIT_USER } from "../constant";
 
-const user={username:'1',password:'123'}
+const user={username:'',password:''}
 
 export default function userReducer(preState=user,action) {
 	const {type,data} = action
