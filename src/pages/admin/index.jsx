@@ -66,7 +66,6 @@ class App extends React.Component {
                 // theme="dark"
                 mode="inline"
                 defaultSelectedKeys={["Home"]}
-                // defaultOpenKeys={["sub1"]}
                 style={{ height: "100%", borderRight: 0 }}
                 onSelect={this.handelSelect}
               >
